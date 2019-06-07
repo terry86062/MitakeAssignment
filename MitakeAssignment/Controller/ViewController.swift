@@ -10,10 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let stockInfoProvider = StockDayTickProvider()
+    lazy var lineChartView: LineChartView = .ma_FromNib()
     
-    let shapeLayer = CAShapeLayer()
-    let path = UIBezierPath()
+    lazy var stockInfoProvider = StockDayTickProvider()
+    
+    lazy var shapeLayer = CAShapeLayer()
+    
+    lazy var path = UIBezierPath()
 
     override func viewDidLoad() {
         
@@ -27,35 +30,15 @@ class ViewController: UIViewController {
         
         downloadData()
         
-        createBaseLine(start: CGPoint(x: 50, y: 100), end: CGPoint(x: 320, y: 100))
-        createBaseLine(start: CGPoint(x: 50, y: 200), end: CGPoint(x: 320, y: 200))
-        createBaseLine(start: CGPoint(x: 50, y: 300), end: CGPoint(x: 320, y: 300))
-        createBaseLine(start: CGPoint(x: 50, y: 400), end: CGPoint(x: 320, y: 400))
-        createBaseLine(start: CGPoint(x: 50, y: 500), end: CGPoint(x: 320, y: 500))
-        
-        createBaseLine(start: CGPoint(x: 50, y: 100), end: CGPoint(x: 50, y: 500))
-        createBaseLine(start: CGPoint(x: 110, y: 100), end: CGPoint(x: 110, y: 500))
-        createBaseLine(start: CGPoint(x: 170, y: 100), end: CGPoint(x: 170, y: 500))
-        createBaseLine(start: CGPoint(x: 230, y: 100), end: CGPoint(x: 230, y: 500))
-        createBaseLine(start: CGPoint(x: 290, y: 100), end: CGPoint(x: 290, y: 500))
-        createBaseLine(start: CGPoint(x: 320, y: 100), end: CGPoint(x: 320, y: 500))
+        setView()
         
     }
     
-    func createBaseLine(start: CGPoint, end: CGPoint) {
+    func setView() {
         
-        let shapeLayer = CAShapeLayer()
-        let path = UIBezierPath()
+        lineChartView.frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 500)
         
-        shapeLayer.lineWidth = 0.5
-        shapeLayer.strokeColor = UIColor.gray.cgColor
-        
-        path.move(to: start)
-        path.addLine(to: end)
-        
-        shapeLayer.path = path.cgPath
-        
-        view.layer.addSublayer(shapeLayer)
+        view.addSubview(lineChartView)
         
     }
     
