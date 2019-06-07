@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let stockInfoProvider = StockInfoProvider()
+    let stockInfoProvider = StockDayTickProvider()
     
     let shapeLayer = CAShapeLayer()
     let path = UIBezierPath()
@@ -25,10 +25,7 @@ class ViewController: UIViewController {
         
         path.move(to: CGPoint(x: 50, y: 300))
         
-        
-        
         downloadData()
-        
         
         createBaseLine(start: CGPoint(x: 50, y: 100), end: CGPoint(x: 320, y: 100))
         createBaseLine(start: CGPoint(x: 50, y: 200), end: CGPoint(x: 320, y: 200))
@@ -64,7 +61,7 @@ class ViewController: UIViewController {
     
     func downloadData() {
         
-        switch stockInfoProvider.downloadStockInfo() {
+        switch stockInfoProvider.downloadStockDayTick() {
             
         case .success(let stockInfo):
             
