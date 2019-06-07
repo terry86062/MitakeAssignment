@@ -15,6 +15,9 @@
 		DEC3D6C422A8BB7200C32000 /* MitakeAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6C322A8BB7200C32000 /* MitakeAssignmentTests.swift */; };
 		DEC3D6D422A8EA4C00C32000 /* StockInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */; };
 		DEC3D6D622A8EF9000C32000 /* StockDayTick.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6D522A8EF9000C32000 /* StockDayTick.swift */; };
+		DEC3D6D922AA08B900C32000 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6D822AA08B900C32000 /* LineChartView.swift */; };
+		DEC3D6DC22AA08FC00C32000 /* LineChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC3D6DB22AA08FC00C32000 /* LineChartView.xib */; };
+		DEC3D6DF22AA76B200C32000 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6DE22AA76B200C32000 /* UIView_extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		DEC3D6C522A8BB7200C32000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MitakeAssignmentTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoProvider.swift; sourceTree = "<group>"; };
 		DEC3D6D522A8EF9000C32000 /* StockDayTick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDayTick.swift; sourceTree = "<group>"; };
+		DEC3D6D822AA08B900C32000 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		DEC3D6DB22AA08FC00C32000 /* LineChartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartView.xib; sourceTree = "<group>"; };
+		DEC3D6DE22AA76B200C32000 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 				DEC3D6D022A8BE8D00C32000 /* Controller */,
 				DEC3D6CF22A8BE8800C32000 /* View */,
 				DEC3D6CE22A8BE7E00C32000 /* Model */,
+				DEC3D6DD22AA767B00C32000 /* Extension */,
 				DEC3D6D122A8BEE500C32000 /* Resource */,
 			);
 			path = MitakeAssignment;
@@ -113,6 +120,7 @@
 			children = (
 				DEC3D6B722A8BB7200C32000 /* LaunchScreen.storyboard */,
 				DEC3D6B222A8BB7000C32000 /* Main.storyboard */,
+				DEC3D6DA22AA08E000C32000 /* Chart */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +148,23 @@
 				DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */,
 			);
 			path = Stock;
+			sourceTree = "<group>";
+		};
+		DEC3D6DA22AA08E000C32000 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6D822AA08B900C32000 /* LineChartView.swift */,
+				DEC3D6DB22AA08FC00C32000 /* LineChartView.xib */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		DEC3D6DD22AA767B00C32000 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6DE22AA76B200C32000 /* UIView_extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +251,7 @@
 				DEC3D6B922A8BB7200C32000 /* LaunchScreen.storyboard in Resources */,
 				DEC3D6B622A8BB7200C32000 /* Assets.xcassets in Resources */,
 				DEC3D6B422A8BB7000C32000 /* Main.storyboard in Resources */,
+				DEC3D6DC22AA08FC00C32000 /* LineChartView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEC3D6B122A8BB7000C32000 /* ViewController.swift in Sources */,
+				DEC3D6D922AA08B900C32000 /* LineChartView.swift in Sources */,
+				DEC3D6DF22AA76B200C32000 /* UIView_extension.swift in Sources */,
 				DEC3D6D422A8EA4C00C32000 /* StockInfoProvider.swift in Sources */,
 				DEC3D6D622A8EF9000C32000 /* StockDayTick.swift in Sources */,
 				DEC3D6AF22A8BB7000C32000 /* AppDelegate.swift in Sources */,
