@@ -13,6 +13,8 @@
 		DEC3D6B622A8BB7200C32000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEC3D6B522A8BB7200C32000 /* Assets.xcassets */; };
 		DEC3D6B922A8BB7200C32000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEC3D6B722A8BB7200C32000 /* LaunchScreen.storyboard */; };
 		DEC3D6C422A8BB7200C32000 /* MitakeAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6C322A8BB7200C32000 /* MitakeAssignmentTests.swift */; };
+		DEC3D6D422A8EA4C00C32000 /* StockInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */; };
+		DEC3D6D622A8EF9000C32000 /* StockDayTick.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC3D6D522A8EF9000C32000 /* StockDayTick.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,9 @@
 		DEC3D6BA22A8BB7200C32000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEC3D6BF22A8BB7200C32000 /* MitakeAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MitakeAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC3D6C322A8BB7200C32000 /* MitakeAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MitakeAssignmentTests.swift; sourceTree = "<group>"; };
-		DEC3D6C522A8BB7200C32000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEC3D6C522A8BB7200C32000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MitakeAssignmentTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoProvider.swift; sourceTree = "<group>"; };
+		DEC3D6D522A8EF9000C32000 /* StockDayTick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDayTick.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				DEC3D6AE22A8BB7000C32000 /* AppDelegate.swift */,
-				DEC3D6B022A8BB7000C32000 /* ViewController.swift */,
-				DEC3D6B222A8BB7000C32000 /* Main.storyboard */,
-				DEC3D6B522A8BB7200C32000 /* Assets.xcassets */,
-				DEC3D6B722A8BB7200C32000 /* LaunchScreen.storyboard */,
 				DEC3D6BA22A8BB7200C32000 /* Info.plist */,
+				DEC3D6D022A8BE8D00C32000 /* Controller */,
+				DEC3D6CF22A8BE8800C32000 /* View */,
+				DEC3D6CE22A8BE7E00C32000 /* Model */,
+				DEC3D6D122A8BEE500C32000 /* Resource */,
 			);
 			path = MitakeAssignment;
 			sourceTree = "<group>";
@@ -94,6 +98,48 @@
 				DEC3D6C522A8BB7200C32000 /* Info.plist */,
 			);
 			path = MitakeAssignmentTests;
+			sourceTree = "<group>";
+		};
+		DEC3D6CE22A8BE7E00C32000 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6D722A8F36500C32000 /* Stock */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DEC3D6CF22A8BE8800C32000 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6B722A8BB7200C32000 /* LaunchScreen.storyboard */,
+				DEC3D6B222A8BB7000C32000 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DEC3D6D022A8BE8D00C32000 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6B022A8BB7000C32000 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DEC3D6D122A8BEE500C32000 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6B522A8BB7200C32000 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DEC3D6D722A8F36500C32000 /* Stock */ = {
+			isa = PBXGroup;
+			children = (
+				DEC3D6D522A8EF9000C32000 /* StockDayTick.swift */,
+				DEC3D6D322A8EA4C00C32000 /* StockInfoProvider.swift */,
+			);
+			path = Stock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +244,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEC3D6B122A8BB7000C32000 /* ViewController.swift in Sources */,
+				DEC3D6D422A8EA4C00C32000 /* StockInfoProvider.swift in Sources */,
+				DEC3D6D622A8EF9000C32000 /* StockDayTick.swift in Sources */,
 				DEC3D6AF22A8BB7000C32000 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
