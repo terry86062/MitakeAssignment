@@ -13,24 +13,14 @@ class ViewController: UIViewController {
     lazy var lineChartView: LineChartView = .ma_FromNib()
     
     lazy var stockInfoProvider = StockDayTickProvider()
-    
-    lazy var shapeLayer = CAShapeLayer()
-    
-    lazy var path = UIBezierPath()
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        shapeLayer.fillColor = UIColor.black.cgColor
-        shapeLayer.lineWidth = 1
-        shapeLayer.strokeColor = UIColor.green.cgColor
-        
-        path.move(to: CGPoint(x: 50, y: 300))
+        setView()
         
         downloadData()
-        
-        setView()
         
     }
     
@@ -46,37 +36,74 @@ class ViewController: UIViewController {
         
         switch stockInfoProvider.downloadStockDayTick() {
             
-        case .success(let stockInfo):
+        case .success(let stockDayTick):
             
-            guard let cc = Double(stockInfo.c), let tp = Double(stockInfo.tp), let bp = Double(stockInfo.bp) else { return }
+            lineChartView.setLabel(tp: stockDayTick.tp, c: stockDayTick.c, bp: stockDayTick.bp)
             
-            for item in stockInfo.tick {
+            let cc = stockDayTick.c.stringToCGFloat()
+            let tp = stockDayTick.tp.stringToCGFloat()
+            let bp = stockDayTick.bp.stringToCGFloat()
+            
+            lineChartView.setPath(cc: cc, tp: tp, bp: bp)
+            
+            var h: CGFloat = 0
+            var ht: CGFloat = 0
+            var hc: CGFloat = 0
+            var l: CGFloat = 0
+            var lt: CGFloat = 0
+            var lc: CGFloat = 0
+            
+            for index in 0..<stockDayTick.tick.count {
                 
-                guard let t = Double(item.t), let c = Double(item.c) else { return }
+                let item = stockDayTick.tick[index]
                 
-                if c > cc {
+                let t = item.t.stringToCGFloat()
+                let c = item.c.stringToCGFloat()
+                
+                if index > 0 {
                     
-                    let y = 200 * (c - cc) / (tp - cc)
+                    let pItem = stockDayTick.tick[index - 1]
                     
-                    path.addLine(to: CGPoint(x: 50 + t, y: 300 - y))
+                    let pt = pItem.t.stringToCGFloat()
+                    let pc = pItem.c.stringToCGFloat()
                     
-                } else if c < cc {
-                    
-                    let y = 200 * (cc - c) / (cc - bp)
-                    
-                    path.addLine(to: CGPoint(x: 50 + t, y: 300 + y))
+                    lineChartView.updatePath(pt: pt, pc: pc, t: t, c: c)
                     
                 } else {
                     
-                    path.addLine(to: CGPoint(x: 50 + t, y: 300))
+                    lineChartView.updatePath(pt: 0, pc: 0, t: t, c: c)
+                    
+                }
+                
+                if item.h.stringToCGFloat() > h {
+                    
+                    h = item.h.stringToCGFloat()
+                    ht = t
+                    hc = c
+                    
+                }
+                
+                if index == 0 {
+                    
+                    l = item.l.stringToCGFloat()
+                    lt = t
+                    lc = c
+                    
+                }
+                
+                if item.l.stringToCGFloat() < l {
+                    
+                    l = item.l.stringToCGFloat()
+                    lt = t
+                    lc = c
                     
                 }
                 
             }
             
-            shapeLayer.path = path.cgPath
+            lineChartView.setHLabel(h: h, ht: ht, hc: hc)
             
-            view.layer.addSublayer(shapeLayer)
+            lineChartView.setLLabel(l: l, lt: lt, lc: lc)
             
         case .failure(let error):
             
