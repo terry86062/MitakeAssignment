@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     
-    func stringToCGFloat() -> CGFloat {
+    func cgFloat() -> CGFloat {
         
         let cgFloat: CGFloat = 0
         

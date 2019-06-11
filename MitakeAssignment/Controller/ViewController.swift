@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var lineChartView: LineChartView = .ma_FromNib()
+    lazy var lineChartView: LineChartView =
+        .ma_FromNib(frame: CGRect(x: 0, y: 200.ma_FitScreen, width: UIScreen.main.bounds.width - 4, height: 500.ma_FitScreen))
     
     lazy var stockInfoProvider = StockDayTickProvider()
 
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
     
     func setView() {
         
-        lineChartView.frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 500)
+        lineChartView.setBaseLine()
         
         view.addSubview(lineChartView)
         
@@ -38,13 +39,9 @@ class ViewController: UIViewController {
             
         case .success(let stockDayTick):
             
-            lineChartView.setLabel(tp: stockDayTick.tp, c: stockDayTick.c, bp: stockDayTick.bp)
+            lineChartView.setLabel(tp: stockDayTick.tp, cc: stockDayTick.c, bp: stockDayTick.bp)
             
-            let cc = stockDayTick.c.stringToCGFloat()
-            let tp = stockDayTick.tp.stringToCGFloat()
-            let bp = stockDayTick.bp.stringToCGFloat()
-            
-            lineChartView.setPath(cc: cc, tp: tp, bp: bp)
+            lineChartView.setPath()
             
             var h: CGFloat = 0
             var ht: CGFloat = 0
@@ -56,44 +53,38 @@ class ViewController: UIViewController {
             for index in 0..<stockDayTick.tick.count {
                 
                 let item = stockDayTick.tick[index]
+                let t = item.t.cgFloat()
+                let c = item.c.cgFloat()
                 
-                let t = item.t.stringToCGFloat()
-                let c = item.c.stringToCGFloat()
-                
-                if index > 0 {
-                    
-                    let pItem = stockDayTick.tick[index - 1]
-                    
-                    let pt = pItem.t.stringToCGFloat()
-                    let pc = pItem.c.stringToCGFloat()
-                    
-                    lineChartView.updatePath(pt: pt, pc: pc, t: t, c: c)
-                    
-                } else {
+                if index == 0 {
                     
                     lineChartView.updatePath(pt: 0, pc: 0, t: t, c: c)
                     
+                    l = item.l.cgFloat()
+                    lt = t
+                    lc = c
+                    
+                } else {
+                    
+                    let pItem = stockDayTick.tick[index - 1]
+                    let pt = pItem.t.cgFloat()
+                    let pc = pItem.c.cgFloat()
+                    
+                    lineChartView.updatePath(pt: pt, pc: pc, t: t, c: c)
+                    
                 }
                 
-                if item.h.stringToCGFloat() > h {
+                if item.h.cgFloat() > h {
                     
-                    h = item.h.stringToCGFloat()
+                    h = item.h.cgFloat()
                     ht = t
                     hc = c
                     
                 }
                 
-                if index == 0 {
+                if item.l.cgFloat() < l {
                     
-                    l = item.l.stringToCGFloat()
-                    lt = t
-                    lc = c
-                    
-                }
-                
-                if item.l.stringToCGFloat() < l {
-                    
-                    l = item.l.stringToCGFloat()
+                    l = item.l.cgFloat()
                     lt = t
                     lc = c
                     
@@ -101,9 +92,9 @@ class ViewController: UIViewController {
                 
             }
             
-            lineChartView.setHLabel(h: h, ht: ht, hc: hc)
+            lineChartView.setHLLabel(hl: h, hlt: ht, hlc: hc)
             
-            lineChartView.setLLabel(l: l, lt: lt, lc: lc)
+            lineChartView.setHLLabel(hl: l, hlt: lt, hlc: lc)
             
         case .failure(let error):
             

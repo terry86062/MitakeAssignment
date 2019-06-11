@@ -10,9 +10,11 @@ import UIKit
 
 extension UIView {
     
-    class func ma_FromNib<T: UIView>() -> T {
+    class func ma_FromNib<T: UIView>(frame: CGRect) -> T {
         
         guard let view = Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)?[0] as? T else { return T() }
+        
+        view.frame = frame
         
         return view
         
